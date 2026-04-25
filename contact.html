@@ -1,227 +1,2254 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> CONTACT | AYUSH NANDI</title>
-	<link rel="icon" type="image/png" href="image.png"> 
-    <link rel="stylesheet" href="contact.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-ant-path/dist/leaflet-ant-path.min.js"></script>
-</head>
-<body>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
 
-<!-- NAVBAR -->
-<header>
-    <section class="hero contact-hero">
-        <nav class="navbar reveal">
-            <div class="logo">
-                <img src="ayush_nandi_logo_glow.png" alt="logo">
-            </div>
-            <ul class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="project.html">Projects</a>
-                <a href="contact.html">Contact</a>
-				<a href="skills.html">Skills</a>
-                <li><button class="btn get-touch-btn">Get in touch</button></li>
-            </ul>
-        </nav>
+body {
+    background: #0d0d0d;
+    color: #fff;
+    overflow-x: hidden;
+}
 
-       <div class="hero-row">
-    <!-- LEFT TEXT -->
-    <div class="contact-hero-content reveal delay-1">
-        <p class="small-title">Let’s build something real</p>
-        <h1>
-            <span class="gradient-text">YOUR STORY</span><br>
-            <span class="outline-text">STARTS HERE</span>
-        </h1>
-        <p class="hero-sub">
-          Every idea has a story waiting to be told.
-Let’s bring yours to life.
-        </p>
-    </div>
+html {
+    scroll-behavior: smooth;
+}
 
-    <!-- RIGHT IMAGE -->
-    <div class="hero-image reveal delay-3">
-        <img src="image.png" alt="AYUSH NANDI-logo">
-    </div>
+/* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.hero {
+    padding: 10px 40px 40px 40px;
+    border-radius: 30px;
+    margin: 30px;
+    background: linear-gradient(135deg, #0f0f0f 0%, #6a11cb 40%, #000000 100%);
+    box-shadow: inset 0 -100px 100px rgba(0, 0, 0, 0.6);
+}
 
-</div>
-    </section>
-</header>
+/* â”€â”€ NAVBAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    gap: 24px;
+    flex-wrap: wrap;
+}
 
-<main>
-<section class="contact-section">
+.nav-links {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
 
-    <!-- 🔥 MESSAGE -->
-    <p id="location-msg" class="location-msg">
-        📍 Allow location for a better experience
-    </p>
-<section class="contact-section">
+.nav-links a,
+.nav-links > li:not(:has(button)) {
+    position: relative;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.15s ease;
+    overflow: hidden;
 
-    <!-- 🔥 MESSAGE -->
-    <p id="location-msg" class="location-msg">
-        📍 Allow location for a better experience
-    </p>
-	<!-- Map Typing -->
-<div class="map-heading">
-    <h2>
-        <span class="map-typing"></span>
-        <span class="cursor">|</span>
-    </h2>
-</div>
-    <!-- MAP -->
-    <div id="map"></div>
-   
+/* Animated gradient underline */
+.nav-links a::after,
+.nav-links > li:not(:has(button))::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 14px;
+    width: calc(100% - 28px);
+    height: 2px;
+    background: linear-gradient(90deg, #ff6a00, #ee0979, #8e2de2);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        <!-- LEFT: Info Cards -->
-        <div class="contact-info-side reveal delay-1">
+.nav-links a:hover,
+.nav-links > li:not(:has(button)):hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-2px);
+}
 
-            <div class="info-card">
-                <div class="info-icon"><i class="fa-brands fa-whatsapp"></i></div>
-                <div>
-                    <h4>WhatsApp</h4>
-                    <p>+91 9563316500</p>
-                </div>
-            </div>
+.nav-links a:hover::after,
+.nav-links > li:not(:has(button)):hover::after {
+    transform: scaleX(1);
+}
 
-            <div class="info-card">
-                <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
-                <div>
-                    <h4>Address</h4>
-                    <p>Alipurduar Court, Alipurduar,<br>West Bengal, India – 736123</p>
-                </div>
-            </div>
+.nav-links a:active,
+.nav-links > li:not(:has(button)):active {
+    transform: translateY(0) scale(0.95);
+    background: rgba(255, 106, 0, 0.12);
+    color: #ff6a00;
+}
 
-            <div class="info-card">
-                <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
-                <div>
-                    <h4>Email</h4>
-                    <p>ayushnandi718@gmail.com</p>
-                </div>
-            </div>
+.nav-links a.active {
+    color: #fff;
+}
 
-            <!-- Social Links -->
-            <div class="social-row">
-                <a href="https://instagram.com/rva.creates/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@rva.creates" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.linkedin.com/in/ayush-nandi-apdj-india/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/ayushnandi718-dev" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.facebook.com/1rva.creates/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
-            </div>
-        </div>
+.nav-links a.active::after {
+    transform: scaleX(1);
+}
 
-<!-- RIGHT: Contact Form -->
-<div class="contact-form-side reveal delay-2">
+/* Ripple */
+.nav-links a .ripple,
+.nav-links > li:not(:has(button)) .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(0);
+    animation: ripple-anim 0.5s linear;
+    pointer-events: none;
+}
 
-    <form class="contact-form" 
-          action="https://formsubmit.co/ayushnandi718@gmail.com" 
-          method="POST">
+@keyframes ripple-anim {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
 
-        <!-- Hidden settings -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="New Portfolio Message!">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="thankyou.html">
-		<input type="hidden" name="_next" value="https://ayushapd.dpdns.org/thankyou.html">
+/* â”€â”€ BUTTON â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.btn {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    font-weight: 600;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
 
-        <div class="form-row">
-            <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" name="name" placeholder="Ayush Nandi" required>
-            </div>
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    z-index: -1;
+    transition: width 0.4s ease;
+}
 
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" name="email" placeholder="you@example.com" required>
-            </div>
-        </div>
+.btn:hover::before {
+    width: 100%;
+}
 
-        <div class="form-group">
-            <label>Subject</label>
-            <input type="text" name="subject" placeholder="Video Editing Project">
-        </div>
+.btn:hover {
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 100, 50, 0.6);
+}
 
-        <div class="form-group">
-            <label>Message</label>
-            <textarea name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
-        </div>
+/* â”€â”€ LOGO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.logo img {
+    height: 160px;
+    max-width: 100%;
+    border-radius: 10px;
+    transition: 0.3s;
+    filter: drop-shadow(0 0 10px rgba(255, 80, 0, 0.5));
+    display: flex;
+    align-items: flex-start;
+}
 
-        <!-- ✅ Button should be directly inside form -->
-        <button type="submit" class="btn submit-btn">
-            Send Message &nbsp;<i class="fa-solid fa-paper-plane"></i>
-        </button>
+.logo img:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
 
-    </form>
+/* â”€â”€ HERO CONTENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+}
+.hero-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* ðŸ”¥ THIS is the magic */
+    gap: 60px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
 
-</div>
+.left {
+    flex: 1;
+}
 
-</div>
+.left h1 {
+    font-size: 70px;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
 
-    </section>
+.left p {
+    margin-bottom: 10px;
+    font-weight: 400;
+}
 
-</main>
+.right {
+    max-width: 300px;
+}
 
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-container">
+.right h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
 
-        <div class="footer-left">
-            <h3>AYUSH NANDI</h3>
-            <p>Video Editor & Digital Creator</p>
-            <div class="contact-info">
-                <p><span>📱</span><strong>WhatsApp:</strong> +91 9563316500</p>
-                <p><span>📍</span><strong>Address:</strong> Alipurduar Court, Alipurduar, West Bengal, India, 736123</p>
-            </div>
-        </div>
+/* â”€â”€ HERO IMAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+   align-items: center;
+}
 
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="project.html">Projects</a>
-            <a href="contact.html">Contact</a>
-			<a href="skills.html">Skills</a>
-        </div>
+.hero-image img {
+    width: 320px;
+    max-width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 0 40px rgba(106, 17, 203, 0.5);
+    transition: 0.4s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
 
-        <div class="footer-social">
-            <a target="_blank" rel="noopener noreferrer" href="https://instagram.com/rva.creates/"><i class="fa-brands fa-instagram"></i></a>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@rva.creates"><i class="fa-brands fa-youtube"></i></a>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/ayush-nandi-apdj-india/"><i class="fa-brands fa-linkedin"></i></a>
-            <a target="_blank" rel="noopener noreferrer" href="https://github.com/ayushnandi718-dev"><i class="fa-brands fa-github"></i></a>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/1rva.creates/"><i class="fa-brands fa-facebook"></i></a>
-        </div>
+.hero-image img:hover {
+    transform: scale(1.05);
+}
 
-        <div class="footer-brands">
-            <div><h2>TOOLS THAT I USE</h2></div>
-            <div class="brand"><img src="capcut.png" alt="CapCut"><p>CAPCUT</p></div>
-            <div class="brand"><img src="alightmotion.png" alt="Alight Motion"><p>ALIGHT MOTION</p></div>
-            <div class="brand"><img src="lightroom.png" alt="Lightroom"><p>LIGHTROOM</p></div>
-        </div>
+/* â”€â”€ TYPOGRAPHY EFFECTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.gradient-text {
+    background: linear-gradient(135deg, #fff, #ffb199);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 100, 50, 0.3);
+}
 
-    </div>
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1px #fff;
+}
 
-    <div class="footer-bottom">
-        <p>© 2026 AYUSH NANDI | All Rights Reserved</p>
-    </div>
-</footer>
+.typing {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2, #4a00e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-right: 5px;
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+    text-shadow: 0 0 20px rgba(255, 100, 50, 0.4);
+}
 
-<script src="script.js"></script>
-<script>
-    // Simple form handler
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        document.getElementById('formSuccess').classList.add('show');
-        this.reset();
-        setTimeout(() => {
-            document.getElementById('formSuccess').classList.remove('show');
-        }, 4000);
-    });
-</script>
-<script> window.chtlConfig = { chatbotId: "8831923776" } </script>
-<script async data-id="8831923776" id="chtl-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
-</body>
-</html>
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.after-text {
+    margin-left: 2px;
+}
+
+/* â”€â”€ SCROLL REVEAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+.delay-3 { transition-delay: 0.6s; }
+
+/* â”€â”€ BRANDS / STARTUP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.startup {
+    padding: 30px;
+    text-align: center;       /* centers inline/text children */
+}
+
+.startup p {
+    text-align: center;
+    margin: 0 auto;           /* âœ… fixed: was "margin-right: 0 auto" */
+    max-width: 300px;
+}
+
+.startup-logos {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 15px;
+    opacity: 0.7;
+}
+
+/* â”€â”€ ABOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.about {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 30px;
+    flex-wrap: wrap;
+}
+
+.about-left h2 {
+    font-size: 40px;
+    max-width: 400px;
+}
+
+.small-title {
+    color: orange;
+    margin-bottom: 10px;
+}
+
+.about-right {
+    max-width: 400px;
+}
+
+.about-right p {
+    margin-bottom: 20px;
+}
+
+/* â”€â”€ GALLERY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.gallery {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+}
+
+.card {
+    flex: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+    /* glow border hidden by default */
+    box-shadow: 0 0 0px rgba(142, 45, 226, 0);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.4s ease;
+    filter: brightness(0.85) saturate(0.9);
+}
+
+/* Overlay (hidden by default) */
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        transparent 40%,
+        rgba(106, 17, 203, 0.6) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 20px;
+}
+
+/* â”€â”€ HOVER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+        0 0 25px rgba(142, 45, 226, 0.6),
+        0 0 60px rgba(255, 106, 0, 0.2),
+        0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover img {
+    transform: scale(1.08);
+    filter: brightness(1) saturate(1.2);
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+/* â”€â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.footer {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    padding: 50px 20px 20px;
+    margin-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: auto;
+    gap: 30px;
+}
+
+/* Footer Left */
+.footer-left h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-left p {
+    color: #aaa;
+}
+
+/* Contact Info */
+.contact-info {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.6;
+    padding: 4px 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-info i {
+    margin-right: 8px;
+    color: #ff6a00;
+}
+
+.contact-info p:hover {
+    color: #fff;
+    transform: translateX(6px);
+    font-weight: 600;
+    text-shadow:
+        0 0 8px rgba(255, 100, 50, 0.5),
+        0 0 15px rgba(142, 45, 226, 0.4);
+}
+
+/* Footer Links */
+.footer-links,
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links a,
+.footer-social a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* Footer Social */
+.footer-social a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 22px;
+    margin: 0;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    color: #fff;
+    transform: translateY(-5px);
+}
+
+/* Footer Brands */
+.footer-brands {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 600px;
+    margin: auto;
+}
+
+.brand {
+    position: relative;
+    padding: 10px 12px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.4s ease;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    min-width: 120px;
+}
+
+.brand::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    padding: 1px;
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.brand img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    filter: grayscale(100%);
+    transition: 0.4s ease;
+}
+
+.brand p {
+    font-size: 14px;
+    color: #aaa;
+    transition: 0.4s ease;
+}
+
+.brand:hover {
+    transform: translateY(-6px) scale(1.03);
+    background: rgba(255, 255, 255, 0.06);
+    animation: glowPulse 1.5s infinite alternate;
+}
+
+.brand:hover::before {
+    opacity: 1;
+}
+
+.brand:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.brand:hover p {
+    color: #fff;
+}
+
+@keyframes glowPulse {
+    from { box-shadow: 0 0 20px rgba(255, 100, 50, 0.2); }
+    to   { box-shadow: 0 0 40px rgba(255, 100, 50, 0.5); }
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #777;
+    font-size: 14px;
+}
+
+/* â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 768px) {
+    .hero {
+        margin: 10px;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .left h1 {
+        font-size: 40px;
+        letter-spacing: -1px;
+    }
+
+    .left p {
+        font-size: 14px;
+    }
+
+    .right {
+        max-width: 100%;
+    }
+
+    .right h3 {
+        font-size: 18px;
+    }
+
+    .hero-image img {
+        width: 250px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-brands {
+        gap: 20px;
+    }
+
+    .brand img {
+        width: 50px;
+        height: 50px;
+    }
+}/* â”€â”€ CONTACT HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.contact-hero {
+    padding: 10px 40px 60px 40px;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact-hero-content {
+    margin-top: 40px;
+}
+
+.contact-hero-content h1 {
+    font-size: 80px;
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -3px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    margin: 10px 0 16px;
+}
+
+.contact-hero-content .hero-sub {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 420px;
+    line-height: 1.6;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+/* â”€â”€ CONTACT SECTION LAYOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.contact-section {
+    display: flex;
+    gap: 50px;
+    padding: 60px 50px;
+    max-width: 1100px;
+    margin: auto;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+#map {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    margin-top: 20px;
+    overflow: hidden;
+	 box-shadow: 0 0 40px rgba(142, 45, 226, 0.4);
+}
+.location-msg {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: 0.5s;
+}
+.map-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 25px;
+	width: 100%;
+}
+
+/* ðŸ’Ž MAIN TEXT */
+.map-heading h2 {
+    font-size: clamp(1.2rem, 3vw, 1.75rem);
+    font-weight: 700;
+    color: #00f5ff;
+    white-space: normal;
+    overflow-wrap: anywhere;
+
+    /* âœ¨ GLOW */
+    text-shadow:
+        0 0 5px #00f5ff,
+        0 0 10px #00f5ff,
+        0 0 20px #00f5ff;
+		margin: 0 auto;
+}
+
+/* cursor */
+.cursor {
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+.location-msg {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.6);
+    padding: 8px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}/* â”€â”€ LEFT: INFO CARDS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.contact-info-side {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px 24px;
+    transition: 0.4s ease;
+    cursor: default;
+}
+
+.info-card:hover {
+    background: rgba(142, 45, 226, 0.12);
+    border-color: rgba(142, 45, 226, 0.4);
+    transform: translateX(6px);
+    box-shadow: 0 0 20px rgba(142, 45, 226, 0.2);
+}
+
+.info-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 0 14px rgba(255, 100, 50, 0.35);
+}
+
+.info-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+}
+
+.info-card p {
+    font-size: 15px;
+    color: #eee;
+    line-height: 1.6;
+}
+
+/* Social Row */
+.social-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.social-row a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ccc;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.social-row a:hover {
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(255, 100, 50, 0.35);
+}
+
+/* â”€â”€ RIGHT: CONTACT FORM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.contact-form-side {
+    flex: 1.4;
+    min-width: 300px;
+    width: 100%;
+}
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+	box-sizing: border-box;
+	width: 100%
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+	width: 100%
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex: 1;
+	min-width: 0;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group input,
+.form-group textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: #fff;
+    font-size: 15px;
+    font-family: "Montserrat", sans-serif;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    resize: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+/* Focus glow */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #8e2de2;
+    background: rgba(142, 45, 226, 0.08);
+    box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.2),
+                0 0 20px rgba(142, 45, 226, 0.1);
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+/* Success Message */
+.form-success {
+    display: none;
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(0, 210, 100, 0.1);
+    border: 1px solid rgba(0, 210, 100, 0.3);
+    color: #00d264;
+    font-size: 14px;
+    font-weight: 600;
+    gap: 8px;
+    align-items: center;
+}
+
+.form-success.show {
+    display: flex;
+    animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 768px) {
+    .contact-hero {
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 50px;
+        letter-spacing: -2px;
+    }
+
+    .contact-section {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .contact-form {
+        padding: 24px;
+    }
+
+    .social-row {
+        justify-content: center;
+    }
+}
+@media (max-width: 600px) {
+    .map-heading h2 {
+        font-size: 18px;
+    }
+}
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   EXTRA RESPONSIVE FIX LAYER (DO NOT EDIT ABOVE)
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+/* Large Tablets */
+@media (max-width: 1024px) {
+    .hero-content,
+    .hero-row {
+        gap: 30px;
+    }
+
+    .left h1 {
+        font-size: 55px;
+    }
+
+    .hero-image img {
+        width: 280px;
+    }
+
+    .gallery {
+        flex-wrap: wrap;
+    }
+
+    .card {
+        min-width: 45%;
+    }
+
+    .contact-section {
+        padding: 40px 30px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        margin: 20px;
+    }
+
+    .left h1 {
+        font-size: 45px;
+    }
+
+    .hero-image {
+        justify-content: center;
+    }
+
+    .about {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .about-left h2,
+    .about-right {
+        max-width: 100%;
+    }
+
+    .gallery {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .hero {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .left h1 {
+        font-size: 34px;
+        letter-spacing: -1px;
+    }
+
+    .typing {
+        font-size: 20px;
+    }
+
+    .hero-image img {
+        width: 220px;
+    }
+
+    .startup-logos {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .about {
+        padding: 30px 15px;
+    }
+
+    .about-left h2 {
+        font-size: 28px;
+    }
+
+    .gallery {
+        padding: 15px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-brands {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .contact-section {
+        padding: 20px 15px;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 36px;
+        letter-spacing: -1px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+    .left h1 {
+        font-size: 28px;
+    }
+
+    .hero-image img {
+        width: 180px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .contact-form {
+        padding: 18px;
+    }
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background: #0d0d0d;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.hero {
+    padding: 10px 40px 40px 40px;
+    border-radius: 30px;
+    margin: 30px;
+    background: linear-gradient(135deg, #0f0f0f 0%, #6a11cb 40%, #000000 100%);
+    box-shadow: inset 0 -100px 100px rgba(0, 0, 0, 0.6);
+}
+
+/* â”€â”€ NAVBAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.nav-links a,
+.nav-links > li:not(:has(button)) {
+    position: relative;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.15s ease;
+    overflow: hidden;
+
+/* Animated gradient underline */
+.nav-links a::after,
+.nav-links > li:not(:has(button))::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 14px;
+    width: calc(100% - 28px);
+    height: 2px;
+    background: linear-gradient(90deg, #ff6a00, #ee0979, #8e2de2);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a:hover,
+.nav-links > li:not(:has(button)):hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-2px);
+}
+
+.nav-links a:hover::after,
+.nav-links > li:not(:has(button)):hover::after {
+    transform: scaleX(1);
+}
+
+.nav-links a:active,
+.nav-links > li:not(:has(button)):active {
+    transform: translateY(0) scale(0.95);
+    background: rgba(255, 106, 0, 0.12);
+    color: #ff6a00;
+}
+
+.nav-links a.active {
+    color: #fff;
+}
+
+.nav-links a.active::after {
+    transform: scaleX(1);
+}
+
+/* Ripple */
+.nav-links a .ripple,
+.nav-links > li:not(:has(button)) .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(0);
+    animation: ripple-anim 0.5s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-anim {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* â”€â”€ BUTTON â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.btn {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    font-weight: 600;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    z-index: -1;
+    transition: width 0.4s ease;
+}
+
+.btn:hover::before {
+    width: 100%;
+}
+
+.btn:hover {
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 100, 50, 0.6);
+}
+
+/* â”€â”€ LOGO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.logo img {
+    height: 160px;
+    max-width: 100%;
+    border-radius: 10px;
+    transition: 0.3s;
+    filter: drop-shadow(0 0 10px rgba(255, 80, 0, 0.5));
+    display: flex;
+    align-items: flex-start;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+/* â”€â”€ HERO CONTENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+}
+.hero-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* ðŸ”¥ THIS is the magic */
+    gap: 60px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.left {
+    flex: 1;
+}
+
+.left h1 {
+    font-size: 70px;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.left p {
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.right {
+    max-width: 300px;
+}
+
+.right h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* â”€â”€ HERO IMAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+   align-items: center;
+}
+
+.hero-image img {
+    width: 320px;
+    max-width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 0 40px rgba(106, 17, 203, 0.5);
+    transition: 0.4s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-image img:hover {
+    transform: scale(1.05);
+}
+
+/* â”€â”€ TYPOGRAPHY EFFECTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.gradient-text {
+    background: linear-gradient(135deg, #fff, #ffb199);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 100, 50, 0.3);
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1px #fff;
+}
+
+.typing {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2, #4a00e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-right: 5px;
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+    text-shadow: 0 0 20px rgba(255, 100, 50, 0.4);
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.after-text {
+    margin-left: 2px;
+}
+
+/* â”€â”€ SCROLL REVEAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+.delay-3 { transition-delay: 0.6s; }
+
+/* â”€â”€ BRANDS / STARTUP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.startup {
+    padding: 30px;
+    text-align: center;       /* centers inline/text children */
+}
+
+.startup p {
+    text-align: center;
+    margin: 0 auto;           /* âœ… fixed: was "margin-right: 0 auto" */
+    max-width: 300px;
+}
+
+.startup-logos {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 15px;
+    opacity: 0.7;
+}
+
+/* â”€â”€ ABOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.about {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 30px;
+    flex-wrap: wrap;
+}
+
+.about-left h2 {
+    font-size: 40px;
+    max-width: 400px;
+}
+
+.small-title {
+    color: orange;
+    margin-bottom: 10px;
+}
+
+.about-right {
+    max-width: 400px;
+}
+
+.about-right p {
+    margin-bottom: 20px;
+}
+
+/* â”€â”€ GALLERY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.gallery {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+}
+
+.card {
+    flex: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+    /* glow border hidden by default */
+    box-shadow: 0 0 0px rgba(142, 45, 226, 0);
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.4s ease;
+    filter: brightness(0.85) saturate(0.9);
+}
+
+/* Overlay (hidden by default) */
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        transparent 40%,
+        rgba(106, 17, 203, 0.6) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 20px;
+}
+
+/* â”€â”€ HOVER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+        0 0 25px rgba(142, 45, 226, 0.6),
+        0 0 60px rgba(255, 106, 0, 0.2),
+        0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover img {
+    transform: scale(1.08);
+    filter: brightness(1) saturate(1.2);
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+/* â”€â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.footer {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    padding: 50px 20px 20px;
+    margin-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: auto;
+    gap: 30px;
+}
+
+/* Footer Left */
+.footer-left h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-left p {
+    color: #aaa;
+}
+
+/* Contact Info */
+.contact-info {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.6;
+    padding: 4px 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-info i {
+    margin-right: 8px;
+    color: #ff6a00;
+}
+
+.contact-info p:hover {
+    color: #fff;
+    transform: translateX(6px);
+    font-weight: 600;
+    text-shadow:
+        0 0 8px rgba(255, 100, 50, 0.5),
+        0 0 15px rgba(142, 45, 226, 0.4);
+}
+
+/* Footer Links */
+.footer-links,
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links a,
+.footer-social a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* Footer Social */
+.footer-social a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 22px;
+    margin: 0;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    color: #fff;
+    transform: translateY(-5px);
+}
+
+/* Footer Brands */
+.footer-brands {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 600px;
+    margin: auto;
+}
+
+.brand {
+    position: relative;
+    padding: 10px 12px;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.4s ease;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    min-width: 120px;
+}
+
+.brand::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    padding: 1px;
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.brand img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    filter: grayscale(100%);
+    transition: 0.4s ease;
+}
+
+.brand p {
+    font-size: 14px;
+    color: #aaa;
+    transition: 0.4s ease;
+}
+
+.brand:hover {
+    transform: translateY(-6px) scale(1.03);
+    background: rgba(255, 255, 255, 0.06);
+    animation: glowPulse 1.5s infinite alternate;
+}
+
+.brand:hover::before {
+    opacity: 1;
+}
+
+.brand:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.brand:hover p {
+    color: #fff;
+}
+
+@keyframes glowPulse {
+    from { box-shadow: 0 0 20px rgba(255, 100, 50, 0.2); }
+    to   { box-shadow: 0 0 40px rgba(255, 100, 50, 0.5); }
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #777;
+    font-size: 14px;
+}
+
+/* â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 768px) {
+    .hero {
+        margin: 10px;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .left h1 {
+        font-size: 40px;
+        letter-spacing: -1px;
+    }
+
+    .left p {
+        font-size: 14px;
+    }
+
+    .right {
+        max-width: 100%;
+    }
+
+    .right h3 {
+        font-size: 18px;
+    }
+
+    .hero-image img {
+        width: 250px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-brands {
+        gap: 20px;
+    }
+
+    .brand img {
+        width: 50px;
+        height: 50px;
+    }
+}/* â”€â”€ CONTACT HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.contact-hero {
+    padding: 10px 40px 60px 40px;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact-hero-content {
+    margin-top: 40px;
+}
+
+.contact-hero-content h1 {
+    font-size: 80px;
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -3px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    margin: 10px 0 16px;
+}
+
+.contact-hero-content .hero-sub {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 420px;
+    line-height: 1.6;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+/* â”€â”€ CONTACT SECTION LAYOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.contact-section {
+    display: flex;
+    gap: 50px;
+    padding: 60px 50px;
+    max-width: 1100px;
+    margin: auto;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+#map {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    margin-top: 20px;
+    overflow: hidden;
+	 box-shadow: 0 0 40px rgba(142, 45, 226, 0.4);
+}
+.location-msg {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: 0.5s;
+}
+.map-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 25px;
+	width: 100%;
+}
+
+/* ðŸ’Ž MAIN TEXT */
+.map-heading h2 {
+    font-size: clamp(1.2rem, 3vw, 1.75rem);
+    font-weight: 700;
+    color: #00f5ff;
+    white-space: normal;
+    overflow-wrap: anywhere;
+
+    /* âœ¨ GLOW */
+    text-shadow:
+        0 0 5px #00f5ff,
+        0 0 10px #00f5ff,
+        0 0 20px #00f5ff;
+		margin: 0 auto;
+}
+
+/* cursor */
+.cursor {
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+.location-msg {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.6);
+    padding: 8px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}/* â”€â”€ LEFT: INFO CARDS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.contact-info-side {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px 24px;
+    transition: 0.4s ease;
+    cursor: default;
+}
+
+.info-card:hover {
+    background: rgba(142, 45, 226, 0.12);
+    border-color: rgba(142, 45, 226, 0.4);
+    transform: translateX(6px);
+    box-shadow: 0 0 20px rgba(142, 45, 226, 0.2);
+}
+
+.info-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 0 14px rgba(255, 100, 50, 0.35);
+}
+
+.info-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+}
+
+.info-card p {
+    font-size: 15px;
+    color: #eee;
+    line-height: 1.6;
+}
+
+/* Social Row */
+.social-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.social-row a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ccc;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.social-row a:hover {
+    background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(255, 100, 50, 0.35);
+}
+
+/* â”€â”€ RIGHT: CONTACT FORM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.contact-form-side {
+    flex: 1.4;
+    min-width: 300px;
+    width: 100%;
+}
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+	box-sizing: border-box;
+	width: 100%
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+	width: 100%
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex: 1;
+	min-width: 0;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group input,
+.form-group textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: #fff;
+    font-size: 15px;
+    font-family: "Montserrat", sans-serif;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    resize: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+/* Focus glow */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #8e2de2;
+    background: rgba(142, 45, 226, 0.08);
+    box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.2),
+                0 0 20px rgba(142, 45, 226, 0.1);
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+/* Success Message */
+.form-success {
+    display: none;
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(0, 210, 100, 0.1);
+    border: 1px solid rgba(0, 210, 100, 0.3);
+    color: #00d264;
+    font-size: 14px;
+    font-weight: 600;
+    gap: 8px;
+    align-items: center;
+}
+
+.form-success.show {
+    display: flex;
+    animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 768px) {
+    .contact-hero {
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 50px;
+        letter-spacing: -2px;
+    }
+
+    .contact-section {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .contact-form {
+        padding: 24px;
+    }
+
+    .social-row {
+        justify-content: center;
+    }
+}
+@media (max-width: 600px) {
+    .map-heading h2 {
+        font-size: 18px;
+    }
+}
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   EXTRA RESPONSIVE FIX LAYER (DO NOT EDIT ABOVE)
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+
+/* Large Tablets */
+@media (max-width: 1024px) {
+    .hero-content,
+    .hero-row {
+        gap: 30px;
+    }
+
+    .left h1 {
+        font-size: 55px;
+    }
+
+    .hero-image img {
+        width: 280px;
+    }
+
+    .gallery {
+        flex-wrap: wrap;
+    }
+
+    .card {
+        min-width: 45%;
+    }
+
+    .contact-section {
+        padding: 40px 30px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        margin: 20px;
+    }
+
+    .left h1 {
+        font-size: 45px;
+    }
+
+    .hero-image {
+        justify-content: center;
+    }
+
+    .about {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .about-left h2,
+    .about-right {
+        max-width: 100%;
+    }
+
+    .gallery {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .hero {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .left h1 {
+        font-size: 34px;
+        letter-spacing: -1px;
+    }
+
+    .typing {
+        font-size: 20px;
+    }
+
+    .hero-image img {
+        width: 220px;
+    }
+
+    .startup-logos {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .about {
+        padding: 30px 15px;
+    }
+
+    .about-left h2 {
+        font-size: 28px;
+    }
+
+    .gallery {
+        padding: 15px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-brands {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .contact-section {
+        padding: 20px 15px;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 36px;
+        letter-spacing: -1px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+    .left h1 {
+        font-size: 28px;
+    }
+
+    .hero-image img {
+        width: 180px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .contact-form {
+        padding: 18px;
+    }
+}
+
+
+
