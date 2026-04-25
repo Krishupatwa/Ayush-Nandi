@@ -8,13 +8,13 @@
 body {
     background: #0d0d0d;
     color: #fff;
+    overflow-x: hidden;
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-/* ── HERO ─────────────────────────────────────────────────── */
 .hero {
     padding: 10px 40px 40px 40px;
     border-radius: 30px;
@@ -23,12 +23,13 @@ html {
     box-shadow: inset 0 -100px 100px rgba(0, 0, 0, 0.6);
 }
 
-/* ── NAVBAR ───────────────────────────────────────────────── */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 24px;
     padding: 10px 0;
+    flex-wrap: wrap;
 }
 
 .nav-links {
@@ -36,6 +37,8 @@ html {
     gap: 10px;
     list-style: none;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .nav-links a,
@@ -53,7 +56,6 @@ html {
     overflow: hidden;
 }
 
-/* Animated gradient underline */
 .nav-links a::after,
 .nav-links > li:not(:has(button))::after {
     content: "";
@@ -77,7 +79,8 @@ html {
 }
 
 .nav-links a:hover::after,
-.nav-links > li:not(:has(button)):hover::after {
+.nav-links > li:not(:has(button)):hover::after,
+.nav-links a.active::after {
     transform: scaleX(1);
 }
 
@@ -88,33 +91,6 @@ html {
     color: #ff6a00;
 }
 
-.nav-links a.active {
-    color: #fff;
-}
-
-.nav-links a.active::after {
-    transform: scaleX(1);
-}
-
-/* Ripple */
-.nav-links a .ripple,
-.nav-links > li:not(:has(button)) .ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.25);
-    transform: scale(0);
-    animation: ripple-anim 0.5s linear;
-    pointer-events: none;
-}
-
-@keyframes ripple-anim {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-/* ── BUTTON ───────────────────────────────────────────────── */
 .btn {
     position: relative;
     overflow: hidden;
@@ -150,9 +126,9 @@ html {
     box-shadow: 0 0 20px rgba(255, 100, 50, 0.6);
 }
 
-/* ── LOGO ─────────────────────────────────────────────────── */
 .logo img {
     height: 160px;
+    max-width: 100%;
     border-radius: 10px;
     transition: 0.3s;
     filter: drop-shadow(0 0 10px rgba(255, 80, 0, 0.5));
@@ -165,7 +141,6 @@ html {
     opacity: 0.8;
 }
 
-/* ── HERO CONTENT ─────────────────────────────────────────── */
 .hero-content {
     display: flex;
     justify-content: space-between;
@@ -176,11 +151,11 @@ html {
 }
 
 .left {
-    flex: 1;
+    flex: 1 1 320px;
 }
 
 .left h1 {
-    font-size: 70px;
+    font-size: clamp(2.5rem, 7vw, 4.4rem);
     line-height: 1.1;
     font-weight: 800;
     letter-spacing: -2px;
@@ -201,9 +176,8 @@ html {
     margin-bottom: 10px;
 }
 
-/* ── HERO IMAGE ───────────────────────────────────────────── */
 .hero-image {
-    flex: 1;
+    flex: 1 1 280px;
     display: flex;
     justify-content: flex-end;
 }
@@ -222,7 +196,6 @@ html {
     transform: scale(1.05);
 }
 
-/* ── TYPOGRAPHY EFFECTS ───────────────────────────────────── */
 .gradient-text {
     background: linear-gradient(135deg, #fff, #ffb199);
     -webkit-background-clip: text;
@@ -257,7 +230,6 @@ html {
     margin-left: 2px;
 }
 
-/* ── SCROLL REVEAL ────────────────────────────────────────── */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -273,16 +245,15 @@ html {
 .delay-2 { transition-delay: 0.4s; }
 .delay-3 { transition-delay: 0.6s; }
 
-/* ── BRANDS / STARTUP ─────────────────────────────────────── */
 .startup {
     padding: 30px;
-    text-align: center;       /* centers inline/text children */
+    text-align: center;
 }
 
 .startup p {
     text-align: center;
-    margin: 0 auto;           /* ✅ fixed: was "margin-right: 0 auto" */
-    white-space: nowrap;
+    margin: 0 auto;
+    max-width: 680px;
 }
 
 .startup-logos {
@@ -291,18 +262,24 @@ html {
     gap: 40px;
     margin-top: 15px;
     opacity: 0.7;
+    flex-wrap: wrap;
 }
 
-/* ── ABOUT ────────────────────────────────────────────────── */
 .about {
     display: flex;
     justify-content: space-between;
+    gap: 30px;
     padding: 50px 30px;
     flex-wrap: wrap;
 }
 
+.about-left,
+.about-right {
+    flex: 1 1 320px;
+}
+
 .about-left h2 {
-    font-size: 40px;
+    font-size: clamp(2rem, 5vw, 2.5rem);
     max-width: 400px;
 }
 
@@ -319,56 +296,46 @@ html {
     margin-bottom: 20px;
 }
 
-/* ── GALLERY ──────────────────────────────────────────────── */
 .gallery {
     display: flex;
     gap: 20px;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .card {
-    flex: 1;
+    flex: 1 1 280px;
     border-radius: 20px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-
-    /* glow border hidden by default */
-    box-shadow: 0 0 0px rgba(142, 45, 226, 0);
+    box-shadow: 0 0 0 rgba(142, 45, 226, 0);
 }
 
 .card img {
     width: 100%;
     height: 100%;
+    min-height: 260px;
     object-fit: cover;
     display: block;
     transition: transform 0.5s ease, filter 0.4s ease;
     filter: brightness(0.85) saturate(0.9);
 }
 
-/* Overlay (hidden by default) */
 .card::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        180deg,
-        transparent 40%,
-        rgba(106, 17, 203, 0.6) 100%
-    );
+    background: linear-gradient(180deg, transparent 40%, rgba(106, 17, 203, 0.6) 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
     border-radius: 20px;
 }
 
-/* ── HOVER ────────────────────────────────────────────────── */
 .card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow:
-        0 0 25px rgba(142, 45, 226, 0.6),
-        0 0 60px rgba(255, 106, 0, 0.2),
-        0 20px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 25px rgba(142, 45, 226, 0.6), 0 0 60px rgba(255, 106, 0, 0.2), 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .card:hover img {
@@ -380,7 +347,6 @@ html {
     opacity: 1;
 }
 
-/* ── FOOTER ───────────────────────────────────────────────── */
 .footer {
     background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
     padding: 50px 20px 20px;
@@ -397,7 +363,13 @@ html {
     gap: 30px;
 }
 
-/* Footer Left */
+.footer-left,
+.footer-links,
+.footer-social,
+.footer-brands {
+    flex: 1 1 220px;
+}
+
 .footer-left h3 {
     font-size: 22px;
     margin-bottom: 5px;
@@ -410,7 +382,6 @@ html {
     color: #aaa;
 }
 
-/* Contact Info */
 .contact-info {
     margin-top: 15px;
     display: flex;
@@ -430,21 +401,13 @@ html {
     cursor: pointer;
 }
 
-.contact-info i {
-    margin-right: 8px;
-    color: #ff6a00;
-}
-
 .contact-info p:hover {
     color: #fff;
     transform: translateX(6px);
     font-weight: 600;
-    text-shadow:
-        0 0 8px rgba(255, 100, 50, 0.5),
-        0 0 15px rgba(142, 45, 226, 0.4);
+    text-shadow: 0 0 8px rgba(255, 100, 50, 0.5), 0 0 15px rgba(142, 45, 226, 0.4);
 }
 
-/* Footer Links */
 .footer-links,
 .footer-social {
     display: flex;
@@ -464,7 +427,10 @@ html {
     transform: translateX(5px);
 }
 
-/* Footer Social */
+.footer-social {
+    gap: 12px;
+}
+
 .footer-social a {
     display: inline-flex;
     justify-content: center;
@@ -474,7 +440,7 @@ html {
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.2);
     font-size: 22px;
-    margin: 0 8px;
+    margin: 0;
     transition: 0.3s;
 }
 
@@ -484,12 +450,11 @@ html {
     transform: translateY(-5px);
 }
 
-/* Footer Brands */
 .footer-brands {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     justify-content: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     max-width: 600px;
     margin: auto;
 }
@@ -504,6 +469,7 @@ html {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
     overflow: hidden;
+    min-width: 120px;
 }
 
 .brand::before {
@@ -513,9 +479,7 @@ html {
     border-radius: 15px;
     padding: 1px;
     background: linear-gradient(135deg, #ff6a00, #ee0979, #8e2de2);
-    -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
@@ -561,7 +525,6 @@ html {
     to   { box-shadow: 0 0 40px rgba(255, 100, 50, 0.5); }
 }
 
-/* Footer Bottom */
 .footer-bottom {
     text-align: center;
     margin-top: 30px;
@@ -571,98 +534,21 @@ html {
     font-size: 14px;
 }
 
-/* ── RESPONSIVE ───────────────────────────────────────────── */
-@media (max-width: 768px) {
-    .hero {
-        margin: 10px;
-        padding: 20px;
-        border-radius: 20px;
-    }
-
-    .hero-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 30px;
-    }
-
-    .left h1 {
-        font-size: 40px;
-        letter-spacing: -1px;
-    }
-
-    .left p {
-        font-size: 14px;
-    }
-
-    .right {
-        max-width: 100%;
-    }
-
-    .right h3 {
-        font-size: 18px;
-    }
-
-    .hero-image img {
-        width: 250px;
-    }
-
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-
-    .footer-brands {
-        gap: 20px;
-    }
-
-    .brand img {
-        width: 50px;
-        height: 50px;
-    }
-}
-
-/* ─────────────────────────────────────────────
-   FINAL RESPONSIVE LAYER (ALL DEVICES FIX)
-──────────────────────────────────────────── */
-
-/* Tablets */
-@media (max-width: 1024px) {
-    .left h1 {
-        font-size: 55px;
-    }
-
-    .hero-image img {
-        width: 280px;
-    }
-
-    .gallery {
-        flex-wrap: wrap;
-    }
-
-    .card {
-        min-width: 45%;
-    }
-
-    .footer-container {
-        gap: 20px;
-    }
-}
-
-/* Small Tablets */
 @media (max-width: 900px) {
     .hero {
         margin: 20px;
+        padding: 20px;
+    }
+
+    .navbar,
+    .nav-links {
+        justify-content: center;
     }
 
     .hero-content {
         flex-direction: column;
         text-align: center;
-    }
-
-    .left h1 {
-        font-size: 45px;
+        gap: 30px;
     }
 
     .hero-image {
@@ -670,34 +556,40 @@ html {
     }
 
     .about {
+        text-align: center;
+    }
+
+    .about-left h2,
+    .about-right {
+        max-width: 100%;
+    }
+
+    .footer-container {
         flex-direction: column;
         text-align: center;
-        gap: 25px;
+        align-items: center;
     }
 
-    .gallery {
-        flex-direction: column;
-    }
-
-    .card {
-        width: 100%;
-    }
-
-    .footer-brands {
+    .contact-info p {
+        justify-content: center;
         flex-wrap: wrap;
+    }
+
+    .footer-social {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
 
-/* Mobile Devices */
 @media (max-width: 600px) {
     .hero {
         margin: 10px;
         padding: 15px;
     }
 
-    .left h1 {
-        font-size: 34px;
-        letter-spacing: -1px;
+    .logo img {
+        height: 110px;
     }
 
     .typing {
@@ -708,83 +600,34 @@ html {
         width: 220px;
     }
 
-    .startup-logos {
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .about-left h2 {
-        font-size: 28px;
-    }
-
-    .gallery {
-        padding: 15px;
-    }
-
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-
-    .footer-social a {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
-
-    .brand img {
-        width: 45px;
-        height: 45px;
+    .about,
+    .gallery,
+    .startup {
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
-/* Small Phones */
 @media (max-width: 400px) {
-    .left h1 {
-        font-size: 28px;
+    .nav-links a {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .nav-links > li,
+    .btn {
+        width: 100%;
+    }
+
+    .btn {
+        text-align: center;
     }
 
     .hero-image img {
         width: 180px;
     }
 
-    .btn {
-        width: 100%;
-        text-align: center;
-    }
-
-    .nav-links a {
-        font-size: 12px;
-        padding: 6px 10px;
-    }
-
-    .startup p {
-        white-space: normal;
-        font-size: 13px;
-    }
-
-    .gallery {
-        padding: 10px;
-    }
-}
-
-/* Ultra Small Devices */
-@media (max-width: 320px) {
-    .left h1 {
-        font-size: 24px;
-    }
-
-    .typing {
-        font-size: 16px;
-    }
-
-    .hero-image img {
-        width: 150px;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 5px;
+    .brand {
+        flex: 1 1 100%;
     }
 }
