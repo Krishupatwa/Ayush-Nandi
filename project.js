@@ -22,7 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ── VIDEO HOVER PLAY ──
     document.querySelectorAll(".project-card video").forEach(video => {
-        video.addEventListener("mouseenter", () => video.play());
+        video.addEventListener("mouseenter", () => {
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === "function") {
+                playPromise.catch(() => {});
+            }
+        });
         video.addEventListener("mouseleave", () => {
             video.pause();
             video.currentTime = 0;
@@ -39,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     if (exploreLink) {
+        exploreLink.href = links.all;
+
         buttons.forEach(btn => {
             btn.addEventListener("click", () => {
                 exploreLink.href = links[btn.dataset.filter] || links.all;
