@@ -8,13 +8,14 @@
 body {
     background: #0d0d0d;
     color: #fff;
+    overflow-x: hidden;
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-/* ── HERO ─────────────────────────────────────────────────── */
+/* â”€â”€ HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .hero {
     padding: 10px 40px 40px 40px;
     border-radius: 30px;
@@ -23,12 +24,14 @@ html {
     box-shadow: inset 0 -100px 100px rgba(0, 0, 0, 0.6);
 }
 
-/* ── NAVBAR ───────────────────────────────────────────────── */
+/* â”€â”€ NAVBAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
+    gap: 24px;
+    flex-wrap: wrap;
 }
 
 .nav-links {
@@ -36,6 +39,8 @@ html {
     gap: 10px;
     list-style: none;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .nav-links a,
@@ -51,7 +56,6 @@ html {
     cursor: pointer;
     transition: color 0.25s ease, background 0.25s ease, transform 0.15s ease;
     overflow: hidden;
-}
 
 /* Animated gradient underline */
 .nav-links a::after,
@@ -114,7 +118,7 @@ html {
     }
 }
 
-/* ── BUTTON ───────────────────────────────────────────────── */
+/* â”€â”€ BUTTON â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .btn {
     position: relative;
     overflow: hidden;
@@ -150,9 +154,10 @@ html {
     box-shadow: 0 0 20px rgba(255, 100, 50, 0.6);
 }
 
-/* ── LOGO ─────────────────────────────────────────────────── */
+/* â”€â”€ LOGO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .logo img {
     height: 160px;
+    max-width: 100%;
     border-radius: 10px;
     transition: 0.3s;
     filter: drop-shadow(0 0 10px rgba(255, 80, 0, 0.5));
@@ -165,7 +170,7 @@ html {
     opacity: 0.8;
 }
 
-/* ── HERO CONTENT ─────────────────────────────────────────── */
+/* â”€â”€ HERO CONTENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .hero-content {
     display: flex;
     justify-content: space-between;
@@ -177,7 +182,7 @@ html {
 .hero-row {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* 🔥 THIS is the magic */
+    align-items: center; /* ðŸ”¥ THIS is the magic */
     gap: 60px;
     margin-top: 40px;
     flex-wrap: wrap;
@@ -209,7 +214,7 @@ html {
     margin-bottom: 10px;
 }
 
-/* ── HERO IMAGE ───────────────────────────────────────────── */
+/* â”€â”€ HERO IMAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .hero-image {
     flex: 1;
     display: flex;
@@ -231,7 +236,7 @@ html {
     transform: scale(1.05);
 }
 
-/* ── TYPOGRAPHY EFFECTS ───────────────────────────────────── */
+/* â”€â”€ TYPOGRAPHY EFFECTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gradient-text {
     background: linear-gradient(135deg, #fff, #ffb199);
     -webkit-background-clip: text;
@@ -266,7 +271,7 @@ html {
     margin-left: 2px;
 }
 
-/* ── SCROLL REVEAL ────────────────────────────────────────── */
+/* â”€â”€ SCROLL REVEAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -282,7 +287,7 @@ html {
 .delay-2 { transition-delay: 0.4s; }
 .delay-3 { transition-delay: 0.6s; }
 
-/* ── BRANDS / STARTUP ─────────────────────────────────────── */
+/* â”€â”€ BRANDS / STARTUP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .startup {
     padding: 30px;
     text-align: center;       /* centers inline/text children */
@@ -290,7 +295,7 @@ html {
 
 .startup p {
     text-align: center;
-    margin: 0 auto;           /* ✅ fixed: was "margin-right: 0 auto" */
+    margin: 0 auto;           /* âœ… fixed: was "margin-right: 0 auto" */
     max-width: 300px;
 }
 
@@ -302,7 +307,7 @@ html {
     opacity: 0.7;
 }
 
-/* ── ABOUT ────────────────────────────────────────────────── */
+/* â”€â”€ ABOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .about {
     display: flex;
     justify-content: space-between;
@@ -328,7 +333,7 @@ html {
     margin-bottom: 20px;
 }
 
-/* ── GALLERY ──────────────────────────────────────────────── */
+/* â”€â”€ GALLERY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gallery {
     display: flex;
     gap: 20px;
@@ -371,7 +376,7 @@ html {
     border-radius: 20px;
 }
 
-/* ── HOVER ────────────────────────────────────────────────── */
+/* â”€â”€ HOVER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow:
@@ -389,7 +394,7 @@ html {
     opacity: 1;
 }
 
-/* ── FOOTER ───────────────────────────────────────────────── */
+/* â”€â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .footer {
     background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
     padding: 50px 20px 20px;
@@ -483,7 +488,7 @@ html {
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.2);
     font-size: 22px;
-    margin: 0 8px;
+    margin: 0;
     transition: 0.3s;
 }
 
@@ -498,7 +503,7 @@ html {
     display: flex;
     gap: 30px;
     justify-content: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     max-width: 600px;
     margin: auto;
 }
@@ -513,6 +518,7 @@ html {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
     overflow: hidden;
+    min-width: 120px;
 }
 
 .brand::before {
@@ -580,7 +586,7 @@ html {
     font-size: 14px;
 }
 
-/* ── RESPONSIVE ───────────────────────────────────────────── */
+/* â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width: 768px) {
     .hero {
         margin: 10px;
@@ -630,7 +636,7 @@ html {
         width: 50px;
         height: 50px;
     }
-}/* ── CONTACT HERO ─────────────────────────────────────────── */
+}/* â”€â”€ CONTACT HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .contact-hero {
     padding: 10px 40px 60px 40px;
     min-height: 340px;
@@ -661,7 +667,7 @@ html {
     margin-bottom: 0;
 }
 
-/* ── CONTACT SECTION LAYOUT ───────────────────────────────── */
+/* â”€â”€ CONTACT SECTION LAYOUT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .contact-section {
     display: flex;
     gap: 50px;
@@ -695,16 +701,15 @@ html {
 	width: 100%;
 }
 
-/* 💎 MAIN TEXT */
+/* ðŸ’Ž MAIN TEXT */
 .map-heading h2 {
-    font-size: 28px;
+    font-size: clamp(1.2rem, 3vw, 1.75rem);
     font-weight: 700;
     color: #00f5ff;
+    white-space: normal;
+    overflow-wrap: anywhere;
 
-    /* 🔥 FORCE SINGLE LINE */
-    white-space: nowrap;
-
-    /* ✨ GLOW */
+    /* âœ¨ GLOW */
     text-shadow:
         0 0 5px #00f5ff,
         0 0 10px #00f5ff,
@@ -730,7 +735,7 @@ html {
     padding: 8px 14px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
-}/* ── LEFT: INFO CARDS ─────────────────────────────────────── */
+}/* â”€â”€ LEFT: INFO CARDS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .contact-info-side {
     flex: 1;
     min-width: 260px;
@@ -815,10 +820,11 @@ html {
     box-shadow: 0 8px 20px rgba(255, 100, 50, 0.35);
 }
 
-/* ── RIGHT: CONTACT FORM ──────────────────────────────────── */
+/* â”€â”€ RIGHT: CONTACT FORM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .contact-form-side {
     flex: 1.4;
     min-width: 300px;
+    width: 100%;
 }
 
 .contact-form {
@@ -922,7 +928,7 @@ html {
     }
 }
 
-/* ── RESPONSIVE ───────────────────────────────────────────── */
+/* â”€â”€ RESPONSIVE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width: 768px) {
     .contact-hero {
         padding: 20px;
@@ -957,9 +963,9 @@ html {
         font-size: 18px;
     }
 }
-/* ─────────────────────────────────────────────
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    EXTRA RESPONSIVE FIX LAYER (DO NOT EDIT ABOVE)
-──────────────────────────────────────────── */
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 /* Large Tablets */
 @media (max-width: 1024px) {
@@ -1116,3 +1122,6 @@ html {
         padding: 18px;
     }
 }
+
+
+
